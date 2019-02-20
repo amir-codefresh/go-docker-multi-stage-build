@@ -10,8 +10,12 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
 RUN pwd
 
+RUN env
+
 FROM alpine:latest  
 RUN apk --no-cache add ca-certificates curl
+
+RUN pwd
 
 WORKDIR /root/
 COPY --from=builder /go/src/github.com/alextanhongpin/hello-world/app .
